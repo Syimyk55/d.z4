@@ -7,23 +7,14 @@ public class Main {
         public static String[] heroesAttackType = {"Physical", "Magical", "Kinetic","Doctor"};
         public static int doctorHelp = 40;
     public static void help() {
-        if ((heroesHealth[0] > 100 ||heroesHealth[1] > 100 || heroesHealth[2] >100)
-                && (heroesHealth[0] < 270 || heroesHealth[1] < 280 || heroesHealth[2] < 260)) {
-            Random r = new Random();
-            int randomNumber = r.nextInt(3);
-            switch (randomNumber) {
-                case 0:
-                 heroesHealth[0] = heroesHealth[0] + doctorHelp;
-                    System.out.println("Help: " + heroesAttackType[0]);
-                    break;
-                case 1:
-                    heroesHealth[1] =heroesHealth[1] + doctorHelp;
-                    System.out.println("Help: " + heroesAttackType[1]);
-                    break;
-                case 2:
-                    heroesHealth[2] = heroesHealth[2] + doctorHelp;
-                    System.out.println("Help: " + heroesAttackType[2]);
-                    break;
+        Random r = new Random();
+        int randomNumber = r.nextInt(3);
+
+        if (heroesHealth[randomNumber] < 100 && heroesHealth[randomNumber] > 0) {
+            if (heroesHealth[3] > 0) {
+                System.out.println("Доктор выбрал: " + heroesAttackType[randomNumber]);
+                heroesHealth[randomNumber] += doctorHelp;
+                System.out.println("Доктор вылечил " + heroesHealth[randomNumber]);
             }
         }
 
@@ -48,7 +39,7 @@ public class Main {
             System.out.println(roundNumber + "********** ROUND ********");
             System.out.println("Boss health" + bossHealth + "[ "+ bossDamage +" ]" );
             for (int i = 0; i < heroesHealth.length; i++) {
-                System.out.println(heroesAttackType[i]+"Hero health" + heroesHealth[i]
+                System.out.println(heroesAttackType[i]+"Hero health " + heroesHealth[i]
                         + "[ "+ heroesDamage[i] +" ]" );
             }
 
@@ -60,11 +51,11 @@ public class Main {
             chooseBossAttackType();
             bossHits();
             heroesHit();
-            if (bossHealth > 0){
+            if (bossHealth > 0) {
 
             }
-            help();
-            printStatistics();
+                help();
+                printStatistics();
 
         }
         public static void bossHits(){
